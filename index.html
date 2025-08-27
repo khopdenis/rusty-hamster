@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rusty Hamster | Game Development Studio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+    <style>
+        * {box-sizing: border-box;}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+            z-index: 1000;
+        }
+
+        nav a {
+            margin-right: 1rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all .3s ease;
+        }
+
+        nav a.active,
+        nav a:hover {
+            color: #FF5E3A;
+        }
+
+        section {
+            padding: 2rem;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Эффекты секций */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-image: linear-gradient(to right, #FFA63D, #FF5E3A);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Логотип */
+        img.logo {
+            width: 150px;
+            display: block;
+            margin: 0 auto 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Подстраница для Game Development */
+        #game-development {
+            display: none;
+        }
+
+        /* Подстраница для Shaders & Effects */
+        #shaders-and-effects {
+            display: none;
+        }
+
+        /* Активная секция показывается */
+        section.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f7f7f7;
+            color: #555;
+        }
+
+        @media(max-width: 768px){
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav>
+        <a href="#" onclick="showSection('home')" class="active">Home</a>
+        <a href="#" onclick="showSection('game-development')">Game Development</a>
+        <a href="#" onclick="showSection('shaders-and-effects')">Shaders & Effects</a>
+    </nav>
+
+    <!-- Главная страница -->
+    <section id="home" class="active">
+        <img src="logo.png" alt="Rusty Hamster Logo" class="logo"/>
+        <h1>Rusty Hamster Studios</h1>
+        <p>Creating immersive gaming experiences since 2025!</p>
+    </section>
+
+    <!-- Страница Game Development -->
+    <section id="game-development">
+        <h1>Game Development</h1>
+        <p>Our team brings passion and innovation into every aspect of game development, from prototyping to final release.</p>
+        <ul style="list-style-type: disc; text-align: left; padding-left: 2rem;">
+            <li>Custom Game Design</li>
+            <li>Level Building</li>
+            <li>Storytelling & Narrative Writing</li>
+            <li>Programming Expertise</li>
+        </ul>
+    </section>
+
+    <!-- Страница Shaders & Effects -->
+    <section id="shaders-and-effects">
+        <h1>Shaders & Effects</h1>
+        <p>Craft stunning visuals that enhance the look and feel of any project with unique shader designs and captivating special effects.</p>
+        <ul style="list-style-type: disc; text-align: left; padding-left: 2rem;">
+            <li>Real-time Shader Programming</li>
+            <li>Post-processing Techniques</li>
+            <li>VFX Creation</li>
+            <li>Optimization Strategies</li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Rusty Hamster Studio</p>
+        <address>
+            Email: contact@rustyhamster.studio<br/>
+            Website: www.rustyhamster.studio
+        </address>
+    </footer>
+
+    <!-- JavaScript для переключения между секциями -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll("section");
+            sections.forEach((sec) => sec.classList.remove("active"));
+            document.getElementById(sectionId).classList.add("active");
+            // Обновляем активную ссылку в меню
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => link.classList.toggle("active", link.onclick === showSection.bind(null, sectionId)));
+        }
+    </script>
+</body>
+</html>
